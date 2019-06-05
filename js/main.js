@@ -15,7 +15,7 @@ let gPaintStatus = {
 
 
 function init() {
-    console.log('yo');
+    console.log('Ready for painting');
 
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
