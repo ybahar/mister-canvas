@@ -55,9 +55,13 @@ function onCanvasHoverMovement(ev) {
 
 
 function drawCircle(x, y) {
-    ctx.beginPath();
-    ctx.arc(100, 75, 50, 0, 1 * Math.PI);
-    ctx.stroke();
+
+    gCtx.beginPath();
+    gCtx.arc(x, y, 50, 0, 2 * Math.PI);
+    gCtx.fillStyle = 'white'
+    gCtx.strokeStyle = gPaintStatus.strokeColor
+    gCtx.stroke();
+    gCtx.closePath(); 
 }
 
 function onCanvasRelease() {
@@ -77,10 +81,11 @@ function changeElement(val) {
 
 
 function drawRect(x, y) {
-
+    gCtx.beginPath()
     gCtx.rect(x, y, 75, 75)
     gCtx.fillStyle = 'white'
-    gCtx.fillRect(x, y, 75, 75)
+    // gCtx.fillRect(x, y, 75, 75)
     gCtx.strokeStyle = getRandomColor();
     gCtx.stroke()
+    gCtx.closePath();
 }

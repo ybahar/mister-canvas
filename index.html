@@ -10,17 +10,19 @@
 </head>
 
 <body onload="init()">
+
+
+    <section class="canvas-control flex space-between">
+        <input type="color" class="color-brush">
+        <select name="shape" class="shape" onchange="changeElement(this.value)">
+            <option value="square">Square</option>
+            <option value="circle">Circle</option>
+        </select>
+    </section>
+    
     <section class="container">
-
-        <section class="canvas-control flex space-between">
-            <input type="color" class="color-brush">
-            <select name="shape" class="shape" onchange="changeElement(this.value)">
-                <option value="square">Square</option>
-                <option value="circle">Circle</option>
-            </select>
-        </section>
-
-        <canvas class="canvas" width="300" height="300" onmousedown="onCanvasClick(event)" onmousemove="onCanvasHoverMovement(event)" onmouseup="onCanvasRelease()"></canvas>
+        <canvas class="canvas" width="300" height="300" onmousedown="onCanvasClick(event)"
+            onmousemove="onCanvasHoverMovement(event)" onmouseup="onCanvasRelease()"></canvas>
 
     </section>
 
