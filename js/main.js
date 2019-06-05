@@ -44,7 +44,6 @@ function onCanvasClick(ev) {
 }
 
 function onCanvasHoverMovement(ev) {
-    console.log(ev);
     
     if (gPaintStatus.isMouseDown) {
         gPaintStatus.isMouseDown = false;
@@ -53,9 +52,8 @@ function onCanvasHoverMovement(ev) {
         const { offsetX, offsetY } = ev;
         if (gPrevPos.x) {
             var diff = Math.abs(((gPrevPos.x - offsetX) + (gPrevPos.y - offsetY)) * 20)
-            gShapeSize = diff / 10;
+            gShapeSize = (diff / 15);
         }
-        console.log(gShapeSize);
         
         switch (gPaintStatus.currElement) {
             case 'square':
@@ -65,6 +63,8 @@ function onCanvasHoverMovement(ev) {
                 break;
             case 'circle':
                 drawCircle(offsetX, offsetY)
+                gPrevPos.x = offsetX
+                gPrevPos.y = offsetY
                 break;
         }
     }
