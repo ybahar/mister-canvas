@@ -10,7 +10,7 @@ let gCurrElement = 'square';
 let gPaintStatus = {
     currElement: 'square',
     isMouseDown: false,
-
+    timeout: null
 }
 
 
@@ -31,19 +31,18 @@ function onCanvasClick(ev) {
 
 }
 
-let timer ;
+
 function onCanvasHoverMovement(ev) {
     if (gPaintStatus.isMouseDown) {
-        console.log('tras');
-        gPaintStatus.isMouseDown=false;
-       timer = setTimeout(onCanvasClick,100);
+        gPaintStatus.isMouseDown = false;
+        gPaintStatus.timeout = setTimeout(onCanvasClick, 100);
         gCtx.save()
         const { offsetX, offsetY } = ev;
         switch (gCurrElement) {
             case 'square':
                 drawRect(offsetX, offsetY);
                 break;
-            case 'circly':
+            case 'circle':
                 drawCircle(offsetX, offsetY)
                 break;
             // case 'text':
@@ -54,12 +53,16 @@ function onCanvasHoverMovement(ev) {
     gCtx.restore()
 }
 
-function drawCircle() {
-    
+
+function drawCircle(x, y) {
+    ctx.beginPath();
+    ctx.arc(100, 75, 50, 0, 1 * Math.PI);
+    ctx.stroke();
 }
+
 function onCanvasRelease() {
-    clearTimeout(timer);
-    gPaintStatus.isMouseDown = false; 
+    clearTimeout(gPaintStatus.timeout);
+    gPaintStatus.isMouseDown = false;
 }
 
 function changeElement(val) {
