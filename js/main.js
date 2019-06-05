@@ -16,7 +16,7 @@ let gPaintStatus = {
 
 function init() {
     console.log('yo');
-    
+
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
 
@@ -24,11 +24,42 @@ function init() {
     gCanvas.height = window.innerHeight;
 }
 
-function onCanvasHoverMovement(){
-    console.log('movement');
+
+
+function onCanvasClick(ev) {
+    gPaintStatus.isMouseDown = true;
+
 }
-function onCanvasRelease(){
-    console.log('up');
+
+let timer ;
+function onCanvasHoverMovement(ev) {
+    if (gPaintStatus.isMouseDown) {
+        console.log('tras');
+        gPaintStatus.isMouseDown=false;
+       timer = setTimeout(onCanvasClick,100);
+        gCtx.save()
+        const { offsetX, offsetY } = ev;
+        switch (gCurrElement) {
+            case 'square':
+                drawRect(offsetX, offsetY);
+                break;
+            case 'circly':
+                drawCircle(offsetX, offsetY)
+                break;
+            // case 'text':
+            //     drawText('test',offsetX, offsetY)
+            //     break;
+        }
+    }
+    gCtx.restore()
+}
+
+function drawCircle() {
+    
+}
+function onCanvasRelease() {
+    clearTimeout(timer);
+    gPaintStatus.isMouseDown = false; 
 }
 
 function changeElement(val) {
@@ -37,34 +68,16 @@ function changeElement(val) {
 
 
 
-function onCanvasClick(ev) {
-    if(gPaintStatus.isMouseDown) 
-
-
-    console.log(ev);
-    
-    gCtx.save()
-    const { offsetX, offsetY } = ev;
-    switch (gCurrElement) {
-        case 'square':
-            drawRect(offsetX, offsetY);
-            break;
-        case 'circly':
-            drawCircle(offsetX, offsetY)
-            break;
-        // case 'text':
-        //     drawText('test',offsetX, offsetY)
-        //     break;
-    }
-    gCtx.restore()
+function changeElement(val) {
+    gCurrElement = val;
 }
 
 
 function drawRect(x, y) {
 
-    gCtx.rect(x, y, 150, 150)
-    gCtx.fillStyle = 'orange'
-    gCtx.fillRect(x, y, 150, 150)
+    gCtx.rect(x, y, 75, 75)
+    gCtx.fillStyle = 'white'
+    gCtx.fillRect(x, y, 75, 75)
+    gCtx.strokeStyle = getRandomColor();
     gCtx.stroke()
-    gCtx.fill()
 }
