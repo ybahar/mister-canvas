@@ -13,6 +13,7 @@
 
     <section onmouseup="mouseUpControls()" class="canvas-control flex space-between">
         <input  onchange="onChangeColor(this.value)" type="color" class="color-brush">
+        <section class="flex"><input type="color" onchange="changeBgc(this.value)"> <button onclick="toggleRainbowMode()">Random colors</button><button onclick="togglePsychMode()">:)</button></section>
         <select name="shape" class="shape" onchange="changeElement(this.value)">
             <option value="square">Square</option>
             <option value="circle">Circle</option>

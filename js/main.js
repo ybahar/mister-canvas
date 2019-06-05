@@ -21,7 +21,9 @@ let gPaintStatus = {
     isMouseDown: false,
     timeout: null,
     strokeColor: 'black',
-    shapeDelay: 30
+    shapeDelay: 30,
+    isPsych: false,
+    isRainbow: false
 }
 
 
@@ -44,7 +46,7 @@ function onCanvasClick(ev) {
 }
 
 function onCanvasHoverMovement(ev) {
-    
+
     if (gPaintStatus.isMouseDown) {
         gPaintStatus.isMouseDown = false;
         gPaintStatus.timeout = setTimeout(onCanvasClick, gPaintStatus.shapeDelay);
@@ -54,17 +56,15 @@ function onCanvasHoverMovement(ev) {
             var diff = Math.abs(((gPrevPos.x - offsetX) + (gPrevPos.y - offsetY)) * 20)
             gShapeSize = (diff / 15);
         }
-        
+
+        gPrevPos.x = offsetX
+        gPrevPos.y = offsetY
         switch (gPaintStatus.currElement) {
             case 'square':
                 drawRect(offsetX, offsetY);
-                gPrevPos.x = offsetX
-                gPrevPos.y = offsetY
                 break;
             case 'circle':
                 drawCircle(offsetX, offsetY)
-                gPrevPos.x = offsetX
-                gPrevPos.y = offsetY
                 break;
         }
     }
@@ -73,13 +73,16 @@ function onCanvasHoverMovement(ev) {
 
 
 function drawCircle(x, y) {
-
-    gCtx.beginPath();
+    if (!gPaintStatus.isPsych) {
+        gCtx.beginPath();
+    }
     gCtx.arc(x, y, gShapeSize, 0, 2 * Math.PI);
     gCtx.fillStyle = 'white'
-    gCtx.strokeStyle = gPaintStatus.strokeColor
+    gCtx.strokeStyle = (gPaintStatus.isRainbow || gPaintStatus.isPsych) ? getRandomColor() : gPaintStatus.strokeColor
     gCtx.stroke();
-    gCtx.closePath();
+    if (!gPaintStatus.isPsych) {
+        gCtx.closePath();
+    }
 }
 
 function onCanvasRelease() {
@@ -98,6 +101,7 @@ function changeElement(val) {
 
 function onChangeColor(color) {
     gPaintStatus.strokeColor = color;
+    gPaintStatus.isRainbow = gPaintStatus.isPsych = false;
 }
 
 function changeElement(val) {
@@ -106,18 +110,31 @@ function changeElement(val) {
 
 
 function drawRect(x, y) {
-    gCtx.beginPath()
+    if (!gPaintStatus.isPsych) {
+        gCtx.beginPath();
+    }
     gCtx.rect(x, y, gShapeSize, gShapeSize)
     gCtx.fillStyle = 'white'
-    gCtx.strokeStyle = gPaintStatus.strokeColor;
+    gCtx.strokeStyle = (gPaintStatus.isRainbow || gPaintStatus.isPsych) ? getRandomColor() : gPaintStatus.strokeColor;
     gCtx.stroke()
-    gCtx.closePath();
+    if (!gPaintStatus.isPsych) {
+        gCtx.closePath();
+    }
 }
 
 function mouseUpControls() {
     if (gPaintStatus.isMouseDown || gPaintStatus.timeout) onCanvasRelease();
 }
 
+function toggleRainbowMode() {
+    gPaintStatus.isRainbow = !gPaintStatus.isRainbow;
+}
+function togglePsychMode() {
+    gPaintStatus.isPsych = !gPaintStatus.isPsych;
+}
+function changeBgc(color){
+   document.body.style.backgroundColor = color;
+}
 // if(gStartTime) {
 //     gPrevTime = Date.now();
 // } else {
