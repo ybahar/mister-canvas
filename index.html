@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,21 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Document</title>
 </head>
+
 <body onload="init()">
+    <section class="container">
 
-    <section class="canvas-control flex space-between" >
-        <input type="color" class="color-brush">
-        <select name="shape" class="shape" onchange="changeElement(this.value)">
-            <option value="square">Square</option>
-            <option value="circle">Circle</option>
-        </select>
+        <section class="canvas-control flex space-between">
+            <input type="color" class="color-brush">
+            <select name="shape" class="shape" onchange="changeElement(this.value)">
+                <option value="square">Square</option>
+                <option value="circle">Circle</option>
+            </select>
+        </section>
+
+        <canvas class="canvas" width="300" height="300" onclick="onCanvasClick(event)"></canvas>
+
     </section>
-
-    <canvas class="canvas"  width="300"  height="300" onclick="onCanvasClick(event)">
-
-    </canvas>
-
 
 
 
@@ -28,4 +30,5 @@
     <script src="js/main.js"></script>
     <script src="js/canvas-service.js"></script>
 </body>
+
 </html>
