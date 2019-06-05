@@ -7,6 +7,12 @@ let gCtx;
 
 let gCurrElement = 'square';
 
+let gPaintStatus = {
+    currElement: 'square',
+    isMouseDown: false,
+
+}
+
 
 function init() {
     console.log('yo');
@@ -26,12 +32,15 @@ function onCanvasRelease(){
 }
 
 function changeElement(val) {
-    gCurrElement = val;
+    gPaintStatus.currElement = val;
 }
 
 
 
 function onCanvasClick(ev) {
+    if(gPaintStatus.isMouseDown) 
+
+
     console.log(ev);
     
     gCtx.save()
