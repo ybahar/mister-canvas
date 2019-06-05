@@ -10,7 +10,6 @@
 </head>
 
 <body onload="init()">
-    <section class="container">
 
         <section class="canvas-control flex space-between">
             <input onchange="onChangeColor(this.value)" type="color" class="color-brush">
@@ -20,7 +19,10 @@
             </select>
         </section>
 
-        <canvas class="canvas" width="300" height="300" onmousedown="onCanvasClick(event)" onmousemove="onCanvasHoverMovement(event)" onmouseup="onCanvasRelease()"></canvas>
+    
+    <section class="container">
+        <canvas class="canvas" width="300" height="300" onmousedown="onCanvasClick(event)"
+            onmousemove="onCanvasHoverMovement(event)" onmouseup="onCanvasRelease()"></canvas>
 
     </section>
 
