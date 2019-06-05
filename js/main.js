@@ -7,11 +7,14 @@ let gCtx;
 
 let gCurrElement = 'square';
 
+
+
 let gPaintStatus = {
     currElement: 'square',
     isMouseDown: false,
     timeout: null,
-    strokeColor : 'black'
+    strokeColor : 'black',
+    shapeDelay: 30
 }
 
 
@@ -36,7 +39,7 @@ function onCanvasClick(ev) {
 function onCanvasHoverMovement(ev) {
     if (gPaintStatus.isMouseDown) {
         gPaintStatus.isMouseDown = false;
-        gPaintStatus.timeout = setTimeout(onCanvasClick, 100);
+        gPaintStatus.timeout = setTimeout(onCanvasClick, gPaintStatus.shapeDelay);
         gCtx.save()
         const { offsetX, offsetY } = ev;
         switch (gCurrElement) {
@@ -68,6 +71,11 @@ function drawCircle(x, y) {
 function onCanvasRelease() {
     clearTimeout(gPaintStatus.timeout);
     gPaintStatus.isMouseDown = false;
+}
+
+function onDelayChange(val) {
+    gPaintStatus.shapeDelay = val
+    document.querySelector('.delay-show').innerText = val;
 }
 
 function changeElement(val) {

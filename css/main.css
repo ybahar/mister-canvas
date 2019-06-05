@@ -32,6 +32,10 @@ body {
     "canvas canvas canvas canvas canvas canvas canvas canvas canvas canvas"
 }
 
+.delay-container {
+    display: block;
+}
+
 .canvas{
     grid-area: canvas;
 }
