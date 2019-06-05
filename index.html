@@ -11,8 +11,8 @@
 
 <body onload="init()">
 
-    <section class="canvas-control flex space-between">
-        <input onchange="onChangeColor(this.value)" type="color" class="color-brush">
+    <section onmouseup="mouseUpControls()" class="canvas-control flex space-between">
+        <input  onchange="onChangeColor(this.value)" type="color" class="color-brush">
         <select name="shape" class="shape" onchange="changeElement(this.value)">
             <option value="square">Square</option>
             <option value="circle">Circle</option>
@@ -24,6 +24,7 @@
     </section>
 
 
+    
     <section class="container">
         <canvas class="canvas" width="300" height="300" onmousedown="onCanvasClick(event)"
             onmousemove="onCanvasHoverMovement(event)" onmouseup="onCanvasRelease()"></canvas>
