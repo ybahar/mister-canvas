@@ -19,20 +19,8 @@ function init() {
 }
 
 function onCanvasHoverMovement(){
-    console.log('movement');
-}
-function onCanvasRelease(){
-    console.log('up');
-}
-
-function changeElement(val) {
-    gCurrElement = val;
-}
-
-
-
-function onCanvasClick(ev) {
-    console.log(ev);
+    if(gPaintStatus.isMouseDown){
+        console.log(ev);
     
     gCtx.save()
     const { offsetX, offsetY } = ev;
@@ -48,6 +36,20 @@ function onCanvasClick(ev) {
         //     break;
     }
     gCtx.restore()
+    }
+}
+function onCanvasRelease(){
+    console.log('up');
+}
+
+function changeElement(val) {
+    gCurrElement = val;
+}
+
+
+
+function onCanvasClick(ev) {
+    
 }
 
 
