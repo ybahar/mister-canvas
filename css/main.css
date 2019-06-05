@@ -1,0 +1,21 @@
+
+
+body {
+    margin: 0;
+}
+
+.canvas-control {
+    height: 50px;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
