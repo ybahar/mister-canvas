@@ -1,41 +1,55 @@
 'use strict'
 console.log('online');
 
-let canvas;
+let gCanvas;
 
-let ctx;
+let gCtx;
 
-let currElement;
+let gCurrElement = 'square';
 
 
 function init() {
-    canvas = document.querySelector('.canvas');
-    ctx = canvas.getContext('2d');
+    console.log('yo');
+    
+    gCanvas = document.querySelector('.canvas');
+    gCtx = gCanvas.getContext('2d');
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerheight;
+    gCanvas.width = window.innerWidth;
+    gCanvas.height = window.innerHeight;
 }
 
 
 function changeElement(val) {
-    currElement = val;
+    gCurrElement = val;
 }
 
 
 
-function onCanvasClick() {
-
+function onCanvasClick(ev) {
+    console.log(ev);
+    
+    gCtx.save()
     const { offsetX, offsetY } = ev;
-    switch (currElement) {
-        case 'triangle':
-            drawTriangle()
+    switch (gCurrElement) {
+        case 'square':
+            drawRect(offsetX, offsetY);
             break;
-        case 'rect':
-            drawRect(offsetX, offsetY)
+        case 'circly':
+            drawCircle(offsetX, offsetY)
             break;
-        case 'text':
-            drawText('test',offsetX, offsetY)
-            break;
+        // case 'text':
+        //     drawText('test',offsetX, offsetY)
+        //     break;
     }
-    ctx.restore()
+    gCtx.restore()
+}
+
+
+function drawRect(x, y) {
+
+    gCtx.rect(x, y, 150, 150)
+    gCtx.fillStyle = 'orange'
+    gCtx.fillRect(x, y, 150, 150)
+    gCtx.stroke()
+    gCtx.fill()
 }
