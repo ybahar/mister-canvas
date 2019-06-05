@@ -6,8 +6,10 @@ let gCanvas;
 
 let gCtx;
 
-let gStartTime;
-let gPrevTime;
+// let gStartTime;
+// let gPrevTime;
+
+let gShapeSize;
 
 let gPrevPos = {
     x: null,
@@ -42,12 +44,18 @@ function onCanvasClick(ev) {
 }
 
 function onCanvasHoverMovement(ev) {
+    console.log(ev);
     
     if (gPaintStatus.isMouseDown) {
         gPaintStatus.isMouseDown = false;
         gPaintStatus.timeout = setTimeout(onCanvasClick, gPaintStatus.shapeDelay);
         gCtx.save()
         const { offsetX, offsetY } = ev;
+        if (gPrevPos.x) {
+            var diff = Math.abs(((gPrevPos.x - offsetX) + (gPrevPos.y - offsetY)) * 20)
+            gShapeSize = diff / 10;
+        }
+        console.log(gShapeSize);
         
         switch (gPaintStatus.currElement) {
             case 'square':
@@ -67,7 +75,7 @@ function onCanvasHoverMovement(ev) {
 function drawCircle(x, y) {
 
     gCtx.beginPath();
-    gCtx.arc(x, y, 50, 0, 2 * Math.PI);
+    gCtx.arc(x, y, gShapeSize, 0, 2 * Math.PI);
     gCtx.fillStyle = 'white'
     gCtx.strokeStyle = gPaintStatus.strokeColor
     gCtx.stroke();
@@ -99,7 +107,7 @@ function changeElement(val) {
 
 function drawRect(x, y) {
     gCtx.beginPath()
-    gCtx.rect(x, y, 75, 75)
+    gCtx.rect(x, y, gShapeSize, gShapeSize)
     gCtx.fillStyle = 'white'
     gCtx.strokeStyle = gPaintStatus.strokeColor;
     gCtx.stroke()
