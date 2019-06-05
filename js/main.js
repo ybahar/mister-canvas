@@ -10,7 +10,8 @@ let gCurrElement = 'square';
 let gPaintStatus = {
     currElement: 'square',
     isMouseDown: false,
-    timeout: null
+    timeout: null,
+    strokeColor : 'black'
 }
 
 
@@ -69,7 +70,9 @@ function changeElement(val) {
     gPaintStatus.currElement = val;
 }
 
-
+function onChangeColor(color){
+     gPaintStatus.strokeColor = color;
+}
 
 function changeElement(val) {
     gCurrElement = val;
@@ -81,6 +84,6 @@ function drawRect(x, y) {
     gCtx.rect(x, y, 75, 75)
     gCtx.fillStyle = 'white'
     gCtx.fillRect(x, y, 75, 75)
-    gCtx.strokeStyle = getRandomColor();
+    gCtx.strokeStyle = gPaintStatus.strokeColor;
     gCtx.stroke()
 }
