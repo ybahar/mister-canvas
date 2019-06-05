@@ -92,3 +92,8 @@ function drawRect(x, y) {
     gCtx.stroke()
     gCtx.closePath();
 }
+
+function mouseUpControls(){
+    console.log('i did enter ');
+    if(gPaintStatus.isMouseDown || gPaintStatus.timeout)    onCanvasRelease();
+}
