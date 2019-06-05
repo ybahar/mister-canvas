@@ -18,6 +18,12 @@ function init() {
     gCanvas.height = window.innerHeight;
 }
 
+function onCanvasHoverMovement(){
+    console.log('movement');
+}
+function onCanvasRelease(){
+    console.log('up');
+}
 
 function changeElement(val) {
     gCurrElement = val;
