@@ -76,6 +76,7 @@ function drawCircle(x, y) {
     if (!gPaintStatus.isPsych) {
         gCtx.beginPath();
     }
+    gCtx.moveTo(x+gShapeSize,y);
     gCtx.arc(x, y, gShapeSize, 0, 2 * Math.PI);
     gCtx.fillStyle = 'white'
     gCtx.strokeStyle = (gPaintStatus.isRainbow || gPaintStatus.isPsych) ? getRandomColor() : gPaintStatus.strokeColor
@@ -121,6 +122,12 @@ function drawRect(x, y) {
         gCtx.closePath();
     }
 }
+// function drawSomething(){
+//     if (!gPaintStatus.isPsych) {
+//         gCtx.beginPath();
+//     }
+//      gCtx
+// }
 
 function mouseUpControls() {
     if (gPaintStatus.isMouseDown || gPaintStatus.timeout) onCanvasRelease();
